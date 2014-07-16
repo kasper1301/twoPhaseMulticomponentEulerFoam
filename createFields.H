@@ -141,20 +141,3 @@
     Info<< "Creating field kinetic energy K\n" << endl;
     volScalarField K1(IOobject::groupName("K", phase1.name()), 0.5*magSqr(U1));
     volScalarField K2(IOobject::groupName("K", phase2.name()), 0.5*magSqr(U2));
-
-
-    multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields1;
-
-    forAll(Y1, i)
-    {
-        fields1.add(Y1[i]);
-    }
-    fields1.add(thermo1.he());
-    
-    multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields2;
-
-    forAll(Y2, i)
-    {
-        fields2.add(Y2[i]);
-    }
-    fields2.add(thermo2.he());
