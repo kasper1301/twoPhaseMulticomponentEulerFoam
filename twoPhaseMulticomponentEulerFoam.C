@@ -25,8 +25,9 @@ Application
     twoPhaseMulticomponentEulerFoam
 
 Description
-    Solver for a system of 2 compressible fluid phases with one phase
-    dispersed, e.g. gas bubbles in a liquid including heat-transfer.
+    Solver for a system of 2 compressible fluid phases with multiple components
+    in each phase. Including heat-transfer, diameter models, interface
+    properties, mixture turbulence models.
 
 \*---------------------------------------------------------------------------*/
 
@@ -74,7 +75,8 @@ int main(int argc, char *argv[])
             fluid.solve();
             rho = fluid.rho();
             fluid.correct();
-
+            
+            #include "YEqns.H"
             #include "EEqns.H"
             #include "UEqns.H"
 

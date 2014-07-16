@@ -26,7 +26,9 @@
     );
 
     rhoReactionThermo& thermo1 = phase1.thermo();
+    thermo1.validate(args.executable(), "h", "e");
     rhoReactionThermo& thermo2 = phase2.thermo();
+    thermo2.validate(args.executable(), "h", "e");
 
     volScalarField& p = thermo1.p();
 
@@ -35,6 +37,16 @@
 
     volScalarField& rho2 = thermo2.rho();
     const volScalarField& psi2 = thermo2.psi();
+
+    basicMultiComponentMixture& composition1 = thermo1.composition();
+    PtrList<volScalarField>& Y1 = composition1.Y();
+
+    word inertSpecie1(thermo1.lookup("inertSpecie"));
+    
+    basicMultiComponentMixture& composition2 = thermo2.composition();
+    PtrList<volScalarField>& Y2 = composition2.Y();
+
+    word inertSpecie2(thermo2.lookup("inertSpecie"));
 
     volVectorField U
     (
@@ -129,3 +141,20 @@
     Info<< "Creating field kinetic energy K\n" << endl;
     volScalarField K1(IOobject::groupName("K", phase1.name()), 0.5*magSqr(U1));
     volScalarField K2(IOobject::groupName("K", phase2.name()), 0.5*magSqr(U2));
+
+
+    multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields1;
+
+    forAll(Y1, i)
+    {
+        fields1.add(Y1[i]);
+    }
+    fields1.add(thermo1.he());
+    
+    multivariateSurfaceInterpolationScheme<scalar>::fieldTable fields2;
+
+    forAll(Y2, i)
+    {
+        fields2.add(Y2[i]);
+    }
+    fields2.add(thermo2.he());
