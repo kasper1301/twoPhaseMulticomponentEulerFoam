@@ -50,4 +50,4 @@ aspectRatioModels/aspectRatioModel/newAspectRatioModel.C
 aspectRatioModels/constantAspectRatio/constantAspectRatio.C
 aspectRatioModels/VakhrushevEfremov/VakhrushevEfremov.C
 
-LIB = $(FOAM_LIBBIN)/libcompressibleEulerianInterfacialModels
+LIB = $(FOAM_USER_LIBBIN)/libcompressibleMulticomponentEulerianInterfacialModels

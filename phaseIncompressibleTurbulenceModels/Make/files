@@ -32,4 +32,4 @@ kineticTheoryModels/frictionalStressModel/frictionalStressModel/newFrictionalStr
 kineticTheoryModels/frictionalStressModel/JohnsonJackson/JohnsonJacksonFrictionalStress.C
 kineticTheoryModels/frictionalStressModel/Schaeffer/SchaefferFrictionalStress.C
 
-LIB = $(FOAM_LIBBIN)/libphaseIncompressibleTurbulenceModels
+LIB = $(FOAM_USER_LIBBIN)/libphaseMulticomponentIncompressibleTurbulenceModels

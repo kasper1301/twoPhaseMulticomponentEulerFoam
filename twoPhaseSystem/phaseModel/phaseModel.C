@@ -63,7 +63,7 @@ Foam::phaseModel::phaseModel
     (
         phaseProperties.subDict(name_)
     ),
-    thermo_(rhoThermo::New(fluid.mesh(), name_)),
+    thermo_(rhoReactionThermo::New(fluid.mesh(), name_)),
     U_
     (
         IOobject

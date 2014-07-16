@@ -1,0 +1,7 @@
+*.dep
+*.o
+*.so
+Make/linux64GccDPOpt/
+interfacialModels/Make/linux64GccDPOpt/
+phaseIncompressibleTurbulenceModels/Make/linux64GccDPOpt/
+twoPhaseSystem/Make/linux64GccDPOpt/

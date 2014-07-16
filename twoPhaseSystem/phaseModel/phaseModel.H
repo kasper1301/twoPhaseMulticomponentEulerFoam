@@ -37,7 +37,7 @@ SourceFiles
 #include "volFields.H"
 #include "surfaceFields.H"
 #include "transportModel.H"
-#include "rhoThermo.H"
+#include "rhoReactionThermo.H"
 
 // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
 
@@ -72,7 +72,7 @@ class phaseModel
         dictionary phaseDict_;
 
         //- Thermophysical properties
-        autoPtr<rhoThermo> thermo_;
+        autoPtr<rhoReactionThermo> thermo_;
 
         //- Velocity
         volVectorField U_;
@@ -136,14 +136,14 @@ public:
             turbulence();
 
         //- Return the thermophysical model
-        const rhoThermo& thermo() const
+        const rhoReactionThermo& thermo() const
         {
             return thermo_();
         }
 
         //- Return non-const access to the thermophysical model
         //  for correction
-        rhoThermo& thermo()
+        rhoReactionThermo& thermo()
         {
             return thermo_();
         }

@@ -25,8 +25,8 @@
         fluid.lookup("pMin")
     );
 
-    rhoThermo& thermo1 = phase1.thermo();
-    rhoThermo& thermo2 = phase2.thermo();
+    rhoReactionThermo& thermo1 = phase1.thermo();
+    rhoReactionThermo& thermo2 = phase2.thermo();
 
     volScalarField& p = thermo1.p();
 

@@ -22,4 +22,4 @@ phasePair/orderedPhasePair/orderedPhasePair.C
 
 twoPhaseSystem.C
 
-LIB = $(FOAM_LIBBIN)/libcompressibleTwoPhaseSystem
+LIB = $(FOAM_USER_LIBBIN)/libcompressibleTwoPhaseMulticomponentSystem
