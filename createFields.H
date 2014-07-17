@@ -26,9 +26,9 @@
     );
 
     rhoReactionThermo& thermo1 = phase1.thermo();
-    thermo1.validate(args.executable(), "h", "e");
+    //~ thermo1.validate(args.executable(), "h", "e");
     rhoReactionThermo& thermo2 = phase2.thermo();
-    thermo2.validate(args.executable(), "h", "e");
+    //~ thermo2.validate(args.executable(), "h", "e");
 
     volScalarField& p = thermo1.p();
 
