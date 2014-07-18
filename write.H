@@ -16,19 +16,19 @@
         (
             IOobject
             (
-                "massFlux1",
+                IOobject::groupName("massFlux", phase1.name()),
                 runTime.timeName(),
                 mesh,
                 IOobject::NO_READ,
                 IOobject::AUTO_WRITE
             ),
-            linearInterpolate(rho1) * phi1
+            linearInterpolate(rho1)*phi1
         );
         surfaceScalarField massFlux2
         (
             IOobject
             (
-                "massFlux2",
+                IOobject::groupName("massFlux", phase2.name()),
                 runTime.timeName(),
                 mesh,
                 IOobject::NO_READ,
