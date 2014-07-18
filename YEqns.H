@@ -2,8 +2,6 @@
     label inertIndex1 = -1;
     volScalarField Yt1(0.0*Y1[0]);
 
-    volScalarField rightHandSide(0.0*alpha1);
-
     forAll(Y1, i)
     {
         if (Y1[i].name() != inertSpecie1)
@@ -15,9 +13,8 @@
                 fvm::ddt(alpha1, Yi)
               + fvm::div(alphaPhi1, Yi)
               - fvm::Sp(fvc::ddt(alpha1) + fvc::div(alphaPhi1), Yi)
-              - fvm::laplacian(alpha1*phase1.turbulence().nuEff(), Yi)
              ==
-                rightHandSide
+                fvm::laplacian(alpha1*phase1.turbulence().nuEff(), Yi)
             );
 
             YiEqn1.relax();
@@ -49,9 +46,8 @@
                 fvm::ddt(alpha2, Yi)
               + fvm::div(alphaPhi2, Yi)
               - fvm::Sp(fvc::ddt(alpha2) + fvc::div(alphaPhi2), Yi)
-              - fvm::laplacian(alpha2*phase2.turbulence().nuEff(), Yi)
              ==
-                rightHandSide
+                fvm::laplacian(alpha2*phase2.turbulence().nuEff(), Yi)
             );
 
             YiEqn2.relax();

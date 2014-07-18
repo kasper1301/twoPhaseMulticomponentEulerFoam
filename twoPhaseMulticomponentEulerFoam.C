@@ -75,10 +75,11 @@ int main(int argc, char *argv[])
             fluid.solve();
             rho = fluid.rho();
             fluid.correct();
-            
+
             #include "YEqns.H"
             #include "EEqns.H"
             #include "UEqns.H"
+
 
             // --- Pressure corrector loop
             while (pimple.correct())
