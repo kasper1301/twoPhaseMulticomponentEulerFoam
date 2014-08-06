@@ -10,11 +10,13 @@
 
     volVectorField& U1 = phase1.U();
     surfaceScalarField& phi1 = phase1.phi();
-    surfaceScalarField& alphaPhi1 = phase1.phiAlpha();
+    surfaceScalarField& alphaPhi1 = phase1.alphaPhi();
+    surfaceScalarField& alphaRhoPhi1 = phase1.alphaRhoPhi();
 
     volVectorField& U2 = phase2.U();
     surfaceScalarField& phi2 = phase2.phi();
-    surfaceScalarField& alphaPhi2 = phase2.phiAlpha();
+    surfaceScalarField& alphaPhi2 = phase2.alphaPhi();
+    surfaceScalarField& alphaRhoPhi2 = phase2.alphaRhoPhi();
 
     surfaceScalarField& phi = fluid.phi();
 
@@ -26,9 +28,7 @@
     );
 
     rhoReactionThermo& thermo1 = phase1.thermo();
-    //~ thermo1.validate(args.executable(), "h", "e");
     rhoReactionThermo& thermo2 = phase2.thermo();
-    //~ thermo2.validate(args.executable(), "h", "e");
 
     volScalarField& p = thermo1.p();
 
@@ -61,19 +61,6 @@
         fluid.U()
     );
 
-    volScalarField rho
-    (
-        IOobject
-        (
-            "rho",
-            runTime.timeName(),
-            mesh,
-            IOobject::NO_READ,
-            IOobject::AUTO_WRITE
-        ),
-        fluid.rho()
-    );
-
     Info<< "Calculating field DDtU1 and DDtU2\n" << endl;
 
     volVectorField DDtU1
@@ -103,7 +90,7 @@
             IOobject::NO_WRITE
         ),
         mesh,
-        dimensionedScalar("zero", dimensionSet(0, 0, 1, 0, 0), 0.0)
+        dimensionedScalar("zero", dimensionSet(-1, 3, 1, 0, 0), 0.0)
     );
 
     volScalarField rAU2
@@ -117,7 +104,7 @@
             IOobject::NO_WRITE
         ),
         mesh,
-        dimensionedScalar("zero", dimensionSet(0, 0, 1, 0, 0), 0.0)
+        dimensionedScalar("zero", dimensionSet(-1, 3, 1, 0, 0), 0.0)
     );
 
     label pRefCell = 0;

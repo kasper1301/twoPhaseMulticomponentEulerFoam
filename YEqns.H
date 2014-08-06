@@ -10,15 +10,18 @@
 
             fvScalarMatrix YiEqn1
             (
-                fvm::ddt(alpha1, Yi)
-              + fvm::div(alphaPhi1, Yi)
-              - fvm::Sp(fvc::ddt(alpha1) + fvc::div(alphaPhi1), Yi)
+                fvm::ddt(alpha1, rho1, Yi)
+              + fvm::div(alphaRhoPhi1, Yi)
+              - fvm::Sp(contErr1, Yi)
+              - fvm::laplacian(alpha1*phase1.turbulence().mut(),Yi)
              ==
-                fvm::laplacian(alpha1*phase1.turbulence().nuEff(), Yi)
+                fvOptions(alpha1, rho1, Yi)
             );
 
             YiEqn1.relax();
+            fvOptions.constrain(YiEqn);
             YiEqn1.solve();
+            fvOptions.correct(Yi);
 
             Yi.max(0.0);
             Yt1 += Yi;
@@ -43,15 +46,18 @@
 
             fvScalarMatrix YiEqn2
             (
-                fvm::ddt(alpha2, Yi)
-              + fvm::div(alphaPhi2, Yi)
-              - fvm::Sp(fvc::ddt(alpha2) + fvc::div(alphaPhi2), Yi)
+                fvm::ddt(alpha2, rho2, Yi)
+              + fvm::div(alphaRhoPhi2, Yi)
+              - fvm::Sp(contErr2, Yi)
+              - fvm::laplacian(alpha2*phase2.turbulence().mut(),Yi)
              ==
-                fvm::laplacian(alpha2*phase2.turbulence().nuEff(), Yi)
+                fvOptions(alpha2, rho2, Yi)
             );
 
             YiEqn2.relax();
+            fvOptions.constrain(YiEqn);
             YiEqn2.solve();
+            fvOptions.correct(Yi);
 
             Yi.max(0.0);
             Yt2 += Yi;

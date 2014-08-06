@@ -139,14 +139,14 @@ void Foam::diameterModels::IATE::correct()
     volScalarField R
     (
         (
-            (2.0/3.0)
+            (1.0/3.0)
            /max
             (
                 fvc::average(phase_ + phase_.oldTime()),
                 residualAlpha_
             )
         )
-       *(fvc::ddt(phase_) + fvc::div(phase_.phiAlpha()))
+       *(fvc::ddt(phase_) + fvc::div(phase_.alphaPhi()))
     );
 
     // Accumulate the run-time selectable sources

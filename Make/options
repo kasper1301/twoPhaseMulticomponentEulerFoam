@@ -1,27 +1,34 @@
 EXE_INC = \
+    -I$(LIB_SRC)/transportModels/compressible/lnInclude \
     -I$(LIB_SRC)/thermophysicalModels/basic/lnInclude \
     -I$(LIB_SRC)/thermophysicalModels/reactionThermo/lnInclude \
     -I$(LIB_SRC)/thermophysicalModels/specie/lnInclude \
     -I$(LIB_SRC)/finiteVolume/lnInclude \
     -I$(LIB_SRC)/transportModels/incompressible/lnInclude \
     -I$(LIB_SRC)/TurbulenceModels/turbulenceModels/lnInclude \
-    -I$(LIB_SRC)/TurbulenceModels/incompressible/lnInclude \
-    -I$(LIB_SRC)/TurbulenceModels/phaseIncompressible/lnInclude \
-    -IphaseIncompressibleTurbulenceModels/lnInclude \
+    -I$(LIB_SRC)/TurbulenceModels/compressible/lnInclude \
+    -I$(LIB_SRC)/TurbulenceModels/phaseCompressible/lnInclude \
+    -IphaseCompressibleTurbulenceModels/lnInclude \
     -IinterfacialModels/lnInclude \
     -ItwoPhaseSystem/lnInclude \
-    -Iaveraging
+    -I$(LIB_SRC)/finiteVolume/lnInclude \
+    -I$(LIB_SRC)/fvOptions/lnInclude \
+    -I$(LIB_SRC)/meshTools/lnInclude \
+    -I$(LIB_SRC)/sampling/lnInclude
 
 EXE_LIBS = \
+    -L$(FOAM_USER_LIBBIN) \
     -L$(FOAM_USER_LIBBIN) \
     -lfluidThermophysicalModels \
     -lreactionThermophysicalModels \
     -lspecie \
     -lturbulenceModels \
-    -lincompressibleTurbulenceModels \
-    -lphaseMulticomponentIncompressibleTurbulenceModels \
+    -lcompressibleTurbulenceModels \
+    -lphaseMulticomponentCompressibleTurbulenceModels \
     -lincompressibleTransportModels \
     -lcompressibleTwoPhaseMulticomponentSystem \
     -lcompressibleMulticomponentEulerianInterfacialModels \
     -lfiniteVolume \
-    -lmeshTools
+    -lfvOptions \
+    -lmeshTools \
+    -lsampling
